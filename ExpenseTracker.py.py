@@ -1,4 +1,4 @@
-# Expense tracker Project
+# Expense Tracker Project
 
 expense_bill = []
 print("Welcome ! Our Expense Tracker.😊")
