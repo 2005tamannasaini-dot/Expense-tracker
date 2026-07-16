@@ -1,8 +1,11 @@
 # Expense Tracker Project
 
+from datetime import datetime
+
 expense_bill = []
 print("Welcome ! Our Expense Tracker.😊")
 
+    
 while True:
     print("\n 📜_____MENU____")
     print("1. ADD EXPENSE.")
@@ -14,9 +17,29 @@ while True:
 
 # 1. ADD EXPENSE:
     if (choice == "1"):
-        date = input("Enter Expense Date:")
-        item_name = input("Add Name Of items:")        
-        amount = float(input("Enter The Amount:"))
+        date = input("Enter Expense Date(DD-MM-YYYY):")
+        try:
+            datetime.strptime(date, "%d-%m-%Y")
+        except ValueError:
+            print("Invalid date! Please use DD-MM-YYYY format.")
+            continue
+
+        item_name = input("Add Name Of items:").strip()
+        if not item_name:
+            print("item name connot be empty.")
+            continue
+        
+        if item_name.isdigit():
+            print("Item name cannot contain only numbers.")
+            continue
+
+        try:        
+            amount = float(input("Enter The Amount:"))
+        except ValueError:
+            print("Invalid input! Please enter number only..")
+            continue
+    
+
 
         expense = {
             "date": date,
@@ -38,8 +61,8 @@ while True:
             print("\n _____See Your Expense_____")
             for item in expense_bill:
                 print(f"  {item['date']} ➡️  {item['item_name']}, {item['amount']}")  
-                  
-    # 3. TOTAL EXPENSE:
+                    
+# 3. TOTAL EXPENSE:
     elif (choice == "3"):
         total = 0
         for item in expense_bill:
@@ -47,7 +70,7 @@ while True:
 
         print("Your Total Expense:",total) 
 
-    # 4. EXIT:
+# 4. EXIT:
     elif (choice == "4"):
         print("👋 Goodbye! Thank You For Using Our System.....!!! ")
         break
