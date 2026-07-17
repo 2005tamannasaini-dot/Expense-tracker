@@ -39,7 +39,9 @@ while True:
             print("Invalid input! Please enter number only..")
             continue
     
-
+        if amount <= 0:
+            print("Amount must be geather then 0.")
+            continue
 
         expense = {
             "date": date,
@@ -58,9 +60,15 @@ while True:
             print("🚫 Your expense list is empty!")
 
         else:
-            print("\n _____See Your Expense_____")
-            for item in expense_bill:
-                print(f"  {item['date']} ➡️  {item['item_name']}, {item['amount']}")  
+            print("\n========= Expense History ============")
+
+            for index, item in enumerate(expense_bill, start=1):
+                       
+                print(f"\nexpense #{index}")
+                print(f"date     : {item['date']} ") 
+                print(f"item_name: {item['item_name']}") 
+                print(f"amount   : ₹{item['amount']}") 
+                print("----------------------") 
                     
 # 3. TOTAL EXPENSE:
     elif (choice == "3"):
@@ -68,7 +76,7 @@ while True:
         for item in expense_bill:
             total += item["amount"]
 
-        print("Your Total Expense:",total) 
+        print(f"Your Total Expense:,₹{total}") 
 
 # 4. EXIT:
     elif (choice == "4"):
